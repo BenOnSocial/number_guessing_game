@@ -25,3 +25,25 @@ else
 
   echo -e "\nWelcome back, ${USERNAME}! You have played ${GAMES_PLAYED} games, and your best game took ${BEST_GAME} guesses."
 fi
+
+echo -e "\nGuess the secret number between 1 and 1000: "
+read GUESS
+
+GUESSES=1
+
+while [[ $GUESS -ne $SECRET ]]
+do
+  if ! [[ $GUESS =~ ^[0-9]+$ ]]
+  then
+    echo -e "\nThat is not an integer, guess again: "
+  elif [[ $GUESS -gt $SECRET ]]
+  then
+    echo -e "\nIt's lower than that, guess again: "
+  elif [[ $GUESS -lt $SECRET ]]
+  then
+    echo -e "\nIt's higher than that, guess again: "
+  fi
+
+  read GUESS
+  GUESSES=$(($GUESSES+1))
+done
