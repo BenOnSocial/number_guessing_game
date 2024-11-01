@@ -47,3 +47,7 @@ do
   read GUESS
   GUESSES=$(($GUESSES+1))
 done
+
+echo -e "\nYou guessed it in ${GUESSES} tries. The secret number was ${SECRET}. Nice job!"
+
+RESULT=$($PSQL "insert into games (user_id, guesses) values ($USER_ID, $GUESSES);")
